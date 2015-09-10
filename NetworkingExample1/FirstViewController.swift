@@ -16,7 +16,6 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet private weak var tableView: UITableView!
     private var permanence = [String: (String, CGFloat)]()
-    private var images = [UIImage]()
     
     private let kCellIdentifier = "MyTableViewCell"
 
@@ -24,8 +23,8 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        tableView.registerNib(UINib(nibName: kCellIdentifier, bundle: nil), forCellReuseIdentifier: kCellIdentifier)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.registerNib(UINib(nibName: kCellIdentifier, bundle: nil), forCellReuseIdentifier: kCellIdentifier)
+        self.tableView.rowHeight = UITableViewAutomaticDimension
 
         var params = [String: String]()
         let urls = MyLibs.instance.randomDummyImageURLs(1, limit: 5)
@@ -41,20 +40,15 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
                 } else {
                     MyLibs.instance.DebugLog(json)
                     self.permanence = [String: (String, CGFloat)]()
-                    self.images = []
                     for (key: String, subJson: JSON) in json["args"] {
-                        let image = UIImage.imageRandomColorAndFixWidth(320, randomHeight: 161)
-                        self.images.append(image)
-                        
                         let url = (subJson.string ?? "")
-                        self.permanence[key] = (url, image.size.height)
+                        self.permanence[key] = (url, 0)
                     }
                     self.tableView.reloadData()
                 }
             }
             ()
         })
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,15 +71,26 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier, forIndexPath: indexPath) as! MyTableViewCell
         
         let imageURLKey = "image_url_\(indexPath.row)"
         let imageURLValue = permanence[imageURLKey]!.0
-        
         MyLibs.instance.DebugLog("\(imageURLKey): \(imageURLValue)")
         
-        cell.imageView1!.image = self.images[indexPath.row]
+        cell.imageView1!.kf_showIndicatorWhenLoading = true
+        cell.imageView1!.kf_setImageWithURL(NSURL(string: imageURLValue)!,
+            placeholderImage: nil,
+            optionsInfo: nil,
+            progressBlock: nil,
+            completionHandler: { (image, error, cacheType, imageURL) -> () in
+                if cacheType == CacheType.None {
+                    self.tableView.reloadData()
+                    cell.imageView1!.kf_showIndicatorWhenLoading = false
+                }
+                let size = image!.size
+                self.permanence[imageURLKey]!.1 = size.height
+            }
+        )
         return cell
     }
 }
