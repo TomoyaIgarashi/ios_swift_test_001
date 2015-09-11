@@ -25,8 +25,14 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.tableView.registerNib(UINib(nibName: kCellIdentifier, bundle: nil), forCellReuseIdentifier: kCellIdentifier)
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! MyTableViewCell
-        let baseHeight = cell.frame.height
+
+        struct Static {
+            static var sizingCell: MyTableViewCell?
+        }
+        if Static.sizingCell == nil {
+            Static.sizingCell = self.tableView.dequeueReusableCellWithIdentifier(self.kCellIdentifier) as? MyTableViewCell
+        }
+        let baseHeight = Static.sizingCell!.frame.height
         var params = [String: String]()
         let urls = MyLibs.instance.randomDummyImageURLs(1, limit: 5)
         for (i, e) in enumerate(urls) {
