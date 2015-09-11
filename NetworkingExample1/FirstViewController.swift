@@ -25,7 +25,8 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.tableView.registerNib(UINib(nibName: kCellIdentifier, bundle: nil), forCellReuseIdentifier: kCellIdentifier)
         self.tableView.rowHeight = UITableViewAutomaticDimension
-
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! MyTableViewCell
+        let baseHeight = cell.frame.height
         var params = [String: String]()
         let urls = MyLibs.instance.randomDummyImageURLs(1, limit: 5)
         for (i, e) in enumerate(urls) {
@@ -42,7 +43,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
                     self.permanence = [String: (String, CGFloat)]()
                     for (key: String, subJson: JSON) in json["args"] {
                         let url = (subJson.string ?? "")
-                        self.permanence[key] = (url, 0)
+                        self.permanence[key] = (url, baseHeight)
                     }
                     self.tableView.reloadData()
                 }
