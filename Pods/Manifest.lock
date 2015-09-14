@@ -1,14 +1,22 @@
 PODS:
   - Alamofire (1.3.1)
   - Alamofire-SwiftyJSON (1.1.0)
+  - Fabric (1.5.0):
+    - Fabric/Base (= 1.5.0)
+  - Fabric/Base (1.5.0)
   - Kingfisher (1.4.5)
   - SwiftyJSON (2.2.1)
+  - TwitterCore (1.10.0)
+  - TwitterKit (1.10.0)
 
 DEPENDENCIES:
   - Alamofire
   - Alamofire-SwiftyJSON (from `https://github.com/SwiftyJSON/Alamofire-SwiftyJSON.git`)
+  - Fabric
   - Kingfisher (~> 1.4)
   - SwiftyJSON
+  - TwitterCore
+  - TwitterKit
 
 EXTERNAL SOURCES:
   Alamofire-SwiftyJSON:
@@ -22,7 +30,10 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: e4ab637e3195b645c814b87a652373439e59f2a4
   Alamofire-SwiftyJSON: 27f4360e31ea09ef1da53c9e46dc3f772461783b
+  Fabric: 374a4a0bbefa219ed201cbc84f2f42e4029302a6
   Kingfisher: 22fa7d41c83b214c19fbb82a77a9db52300b3719
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  TwitterCore: 5291a4703f869a024b9457f11617914122d5e8cb
+  TwitterKit: d6912e5000fc6c1061745216875e611dbe2b5cf5
 
 COCOAPODS: 0.38.2

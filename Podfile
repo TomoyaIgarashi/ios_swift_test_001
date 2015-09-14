@@ -7,6 +7,9 @@ pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'Alamofire-SwiftyJSON', :git => "https://github.com/SwiftyJSON/Alamofire-SwiftyJSON.git"
 pod 'Kingfisher', '~> 1.4'
+pod 'Fabric'
+pod 'TwitterKit'
+pod 'TwitterCore'
 
 target 'NetworkingExample1' do
 
