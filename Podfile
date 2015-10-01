@@ -9,6 +9,7 @@ pod 'Kingfisher', '~> 1.4'
 pod 'Fabric'
 pod 'TwitterKit'
 pod 'TwitterCore'
+pod 'SSKeychain'
 
 target 'NetworkingExample1' do
 

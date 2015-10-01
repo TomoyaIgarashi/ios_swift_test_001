@@ -4,6 +4,7 @@ PODS:
     - Fabric/Base (= 1.5.1)
   - Fabric/Base (1.5.1)
   - Kingfisher (1.6.0)
+  - SSKeychain (1.2.3)
   - SwiftyJSON (2.2.1)
   - TwitterCore (1.11.2)
   - TwitterKit (1.11.2)
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - Alamofire (~> 2.0.2)
   - Fabric
   - Kingfisher (~> 1.4)
+  - SSKeychain
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
   - TwitterCore
   - TwitterKit
@@ -30,6 +32,7 @@ SPEC CHECKSUMS:
   Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
   Fabric: 03c3b3fe77e11a2bc31421b989a9c7adaa4779a5
   Kingfisher: 3308d487e5c2a0fba9c1054fc3b8c45923e03c40
+  SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   TwitterCore: 79a35ada3dfb88d371b990d2ef62d72acde3ea7c
   TwitterKit: 4390d4a31c46823883a9bcd1e34ec3694333dfe7

@@ -54,10 +54,12 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-NetworkingExample1/Alamofire.framework'
   install_framework 'Pods-NetworkingExample1/Kingfisher.framework'
+  install_framework 'Pods-NetworkingExample1/SSKeychain.framework'
   install_framework 'Pods-NetworkingExample1/SwiftyJSON.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-NetworkingExample1/Alamofire.framework'
   install_framework 'Pods-NetworkingExample1/Kingfisher.framework'
+  install_framework 'Pods-NetworkingExample1/SSKeychain.framework'
   install_framework 'Pods-NetworkingExample1/SwiftyJSON.framework'
 fi
