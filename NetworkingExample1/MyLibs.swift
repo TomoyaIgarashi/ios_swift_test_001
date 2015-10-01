@@ -26,7 +26,7 @@ final class MyLibs {
     
     func DebugLog(object: Any) -> Void {
         #if DEBUG
-            Swift.println(object)
+            Swift.print(object)
         #endif
     }
 }

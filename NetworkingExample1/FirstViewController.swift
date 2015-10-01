@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import Alamofire_SwiftyJSON
 import Kingfisher
 
 class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -35,26 +34,24 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         let baseHeight = Static.sizingCell!.frame.height
         var params = [String: String]()
         let urls = MyLibs.instance.randomDummyImageURLs(1, limit: 5)
-        for (i, e) in enumerate(urls) {
+        for (i, e) in urls.enumerate() {
             params["image_url_\(i)"] = e
         }
         let get = "http://httpbin.org/get"
-        Alamofire.request(.GET, get, parameters: params).responseSwiftyJSON({ (request, response, json, error) in
-            response.map { (r: NSHTTPURLResponse) -> Void in
-                MyLibs.instance.DebugLog("StatusCode: \(r.statusCode)")
-                if let e = error {
-                    MyLibs.instance.DebugLog(e)
-                } else {
-                    MyLibs.instance.DebugLog(json)
-                    self.permanence = [String: (String, CGFloat)]()
-                    for (key: String, subJson: JSON) in json["args"] {
-                        let url = (subJson.string ?? "")
-                        self.permanence[key] = (url, baseHeight)
-                    }
-                    self.tableView.reloadData()
+        Alamofire.request(.GET, get, parameters: params).responseJSON(completionHandler: { (request, response, result) -> Void in
+            switch result {
+            case .Success:
+                let json = SwiftyJSON.JSON(result.value!)
+                MyLibs.instance.DebugLog(json)
+                self.permanence = [String: (String, CGFloat)]()
+                for (key, subJson): (String, JSON) in json["args"] {
+                    let url = (subJson.string ?? "")
+                    self.permanence[key] = (url, baseHeight)
                 }
+                self.tableView.reloadData()
+            case .Failure(_, let e):
+                assertionFailure("HTTP Error: \(e)")
             }
-            ()
         })
     }
 

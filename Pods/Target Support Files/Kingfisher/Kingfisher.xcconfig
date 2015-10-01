@@ -1,1 +1,1 @@
-KINGFISHER_OTHER_LDFLAGS = -weak_framework "WatchKit"
+KINGFISHER_OTHER_LDFLAGS = -framework "CFNetwork"
