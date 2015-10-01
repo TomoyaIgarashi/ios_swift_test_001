@@ -88,8 +88,8 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
             progressBlock: nil,
             completionHandler: { (image, error, cacheType, imageURL) -> () in
                 if cacheType == CacheType.None {
-                    self.tableView.reloadData()
                     cell.imageView1!.kf_showIndicatorWhenLoading = false
+                    self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
                 }
                 let size = image!.size
                 self.permanence[imageURLKey]!.1 = size.height
