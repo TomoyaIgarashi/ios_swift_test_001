@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Couger Inc. All rights reserved.
 //
 
-import UIKit
 import TwitterKit
+import UIKit
 
 class SecondViewController: UIViewController {
 

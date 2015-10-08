@@ -6,9 +6,10 @@
 //  Copyright (c) 2015 Couger Inc. All rights reserved.
 //
 
-import UIKit
 import Fabric
+import SSKeychain
 import TwitterKit
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +19,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
+        let settings = UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        
         Fabric.with([Twitter.self()])
+        
         return true
     }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+        let deviceTokenString: String = ( deviceToken.description as NSString )
+            .stringByTrimmingCharactersInSet( characterSet )
+            .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
+        SSKeychain.setPassword(deviceTokenString, forService: "SwiftSample1", account: "DeviceToken")
+        MyLibs.instance.DebugLog("deviceToken = \(deviceTokenString)")
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        MyLibs.instance.DebugLog("Failed to get token, error: \(error)")
+    }
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

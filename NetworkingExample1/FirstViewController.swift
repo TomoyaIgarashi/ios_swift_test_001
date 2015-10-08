@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SSKeychain
 import SwiftyJSON
 import Kingfisher
 
@@ -21,6 +22,10 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        let _ = SSKeychain.passwordForService("SwiftSample1", account: "DeviceToken")
+
         
         self.tableView.registerNib(UINib(nibName: kCellIdentifier, bundle: nil), forCellReuseIdentifier: kCellIdentifier)
         self.tableView.rowHeight = UITableViewAutomaticDimension
