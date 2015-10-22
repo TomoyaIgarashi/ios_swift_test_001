@@ -4,7 +4,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 pod 'Alamofire', '~> 2.0.2'
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :branch => 'xcode7'
+pod 'SwiftyJSON'
 pod 'Kingfisher', '~> 1.4'
 pod 'Fabric'
 pod 'TwitterKit'
