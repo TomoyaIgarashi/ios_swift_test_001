@@ -30,9 +30,9 @@
 				<key>KitInfo</key>
 				<dict>
 					<key>consumerKey</key>
-					<string>Qg4Wg5m7chbtJ9yCr0tnhY2HJ</string>
+					<string>UpuW9HxOyeJMROzVz5PwZjEyV</string>
 					<key>consumerSecret</key>
-					<string>cgk6E6FnKn0qZA725MnmSwP3pEvY1KnWfQ9onNSyV5GGhs6Ljm</string>
+					<string>5xpCd5Q4SJdpHP1IUwoPOOtNOyoiGAi9RG8gf9WIYNghhuqMFT</string>
 				</dict>
 				<key>KitName</key>
 				<string>Twitter</string>
@@ -47,6 +47,13 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>dummyimage.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 			<key>httpbin.org</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -54,13 +61,6 @@
 				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
-            <key>dummyimage.com</key>
-            <dict>
-                <key>NSExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-            </dict>
 		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>
